@@ -11,20 +11,38 @@ import UIKit
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var videos:[Video] = {
+        
+        // She will be loved
+        var maroon_5_channel = Channel()
+        maroon_5_channel.name = "Maroon 5"
+        maroon_5_channel.profileImageName = "maroon_5"
+        
         var she_will_be_loved = Video()
         she_will_be_loved.title = "Maroon 5 - She will be loved"
         she_will_be_loved.thumbnailImageName = "she_will_be_loved"
         she_will_be_loved.views = "53,452,234"
+        she_will_be_loved.channel = maroon_5_channel
+        she_will_be_loved.uploadDate = "8 years"
         
+        // This love
         var this_love = Video()
         this_love.title = "Maroon 5 - This love"
         this_love.thumbnailImageName = "this_love"
         this_love.views = "35,344,345"
+        this_love.channel = maroon_5_channel
+        this_love.uploadDate = "6 years"
+        
+        // Don't look back in anger
+        var oasis_channel = Channel()
+        oasis_channel.name = "Oasis"
+        oasis_channel.profileImageName = "oasis"
         
         var dont_look_back_in_anger = Video()
         dont_look_back_in_anger.title = "Oasis - Don't look back in anger"
         dont_look_back_in_anger.thumbnailImageName = "dont_look_back_in_anger"
         dont_look_back_in_anger.views = "12,244,235"
+        dont_look_back_in_anger.channel = oasis_channel
+        dont_look_back_in_anger.uploadDate = "6 years"
         
         return [she_will_be_loved, this_love, dont_look_back_in_anger]
     }()
@@ -96,7 +114,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = (view.frame.width - 16 - 16) * 9 / 16
-        return CGSize(width: view.frame.width, height: height + 16 + 68) // 68 from Vertical constraints
+        return CGSize(width: view.frame.width, height: height + 16 + 88) // 68 from Vertical constraints -> was change to 88
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

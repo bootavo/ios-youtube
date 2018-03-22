@@ -29,7 +29,28 @@ class VideoCell: BaseCell {
         didSet {
             titleLabel.text = video?.title
             thumnailImageView.image = UIImage(named: (video?.thumbnailImageName)!)
-            subtittleTexView.text =  (video?.title)! + " - " + (video?.views)! + " views  - 2 years"
+            
+            //Validando 
+            if let profileImage = video?.channel?.profileImageName {
+                userProfileImageView.image = UIImage(named: profileImage)
+            }
+            
+            subtittleTexView.text = "\((video?.channel?.name)!) - \((video?.title)!) - \((video?.views)!) views - \((video?.uploadDate)!)"
+            
+            //Measure title text
+            if let title = video?.title {
+                let size = CGSize(width: frame.width - 16 - 44 - 8 - 16, height: 1000)
+                let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+                let estimateRect = NSString(string: title).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)], context: nil)
+                
+                if estimateRect.size.height > 20 {
+                    titleLabelHeighConstraint?.constant = 44
+                } else {
+                    titleLabelHeighConstraint?.constant = 20
+                }
+                
+            }
+            
         }
     }
     
@@ -84,6 +105,7 @@ class VideoCell: BaseCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Maroon 5 - She will be loved"
+        label.numberOfLines = 2
         return label
     }()
     
@@ -95,6 +117,8 @@ class VideoCell: BaseCell {
         textView.textColor = UIColor.lightGray
         return textView
     }()
+    
+    var titleLabelHeighConstraint: NSLayoutConstraint?
     
     override func setupViews(){
         //backgroundColor = UIColor.blue
@@ -114,7 +138,7 @@ class VideoCell: BaseCell {
         //First vertical constraint with two elements
         //addConstraintsWithFormat(format: "V:|-16-[v0]-16-[v1(1)]|", views: thumnailImageView, separatorView)
         
-        addConstraintsWithFormat(format: "V:|-16-[v0]-8-[v1(44)]-16-[v2(1)]|", views: thumnailImageView, userProfileImageView, separatorView)
+        addConstraintsWithFormat(format: "V:|-16-[v0]-8-[v1(44)]-36-[v2(1)]|", views: thumnailImageView, userProfileImageView, separatorView) // 16 -> V:|-16-[v0]-8-[v1(44)]-16-[v2(1)]|was changed to 36
         
         //Top constraints
         addConstraints([NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: thumnailImageView, attribute: .bottom, multiplier: 1, constant: 8)])
@@ -126,7 +150,10 @@ class VideoCell: BaseCell {
         addConstraints([NSLayoutConstraint(item: titleLabel, attribute: .right, relatedBy: .equal, toItem: thumnailImageView, attribute: .right, multiplier: 1, constant: 0)])
         
         //Height constraint
-        addConstraints([NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20)])
+        
+        titleLabelHeighConstraint = NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 44)
+        
+        //addConstraints([NSLayoutConstraint(item: titleLabel, attribute: .height, //relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 44)])
         
         //
         
