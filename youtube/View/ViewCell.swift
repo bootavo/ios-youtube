@@ -30,12 +30,17 @@ class VideoCell: BaseCell {
             titleLabel.text = video?.title
             thumnailImageView.image = UIImage(named: (video?.thumbnailImageName)!)
             
-            //Validando 
             if let profileImage = video?.channel?.profileImageName {
                 userProfileImageView.image = UIImage(named: profileImage)
             }
             
-            subtittleTexView.text = "\((video?.channel?.name)!) - \((video?.title)!) - \((video?.views)!) views - \((video?.uploadDate)!)"
+            if let channelName = video?.channel?.name, let numberOfViews = video?.views, let uploadDate = video?.uploadDate {
+                
+                let numberFormatter = NumberFormatter()
+                numberFormatter.numberStyle = .decimal
+                
+                subtittleTexView.text = "\(channelName) · \(numberFormatter.string(from: numberOfViews)!) · \(uploadDate) "
+            }
             
             //Measure title text
             if let title = video?.title {
@@ -53,29 +58,6 @@ class VideoCell: BaseCell {
             
         }
     }
-    
-    /*  How would you feel
-        Dive
-        Bloodstream
-        Afire love
-        One
-        All of the stars
-        Small bump
-        Lego House
-        The a team
-        Give me love
-        Photograph
-        Perfect
-        Thinking out loud
-        MAGIC! - Rude
-        One Republic - Counting stars
-        Moves like Jagger
-        Payphone
-        One More Night
-        Don't wanna know
-        Sugar
-        She will be loved
-    */
     
     let thumnailImageView: UIImageView = {
         let imageView = UIImageView()

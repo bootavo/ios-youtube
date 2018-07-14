@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -20,7 +21,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         var she_will_be_loved = Video()
         she_will_be_loved.title = "Maroon 5 - She will be loved"
         she_will_be_loved.thumbnailImageName = "she_will_be_loved"
-        she_will_be_loved.views = "53,452,234"
+        she_will_be_loved.views = 53452234
         she_will_be_loved.channel = maroon_5_channel
         she_will_be_loved.uploadDate = "8 years"
         
@@ -28,7 +29,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         var this_love = Video()
         this_love.title = "Maroon 5 - This love"
         this_love.thumbnailImageName = "this_love"
-        this_love.views = "35,344,345"
+        this_love.views = 35344345
         this_love.channel = maroon_5_channel
         this_love.uploadDate = "6 years"
         
@@ -38,17 +39,57 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         oasis_channel.profileImageName = "oasis"
         
         var dont_look_back_in_anger = Video()
-        dont_look_back_in_anger.title = "Oasis - Don't look back in anger"
+        dont_look_back_in_anger.title = "Oasis - Don't look back in anger Asdsb dsabdasd ibdoias"
         dont_look_back_in_anger.thumbnailImageName = "dont_look_back_in_anger"
-        dont_look_back_in_anger.views = "12,244,235"
+        dont_look_back_in_anger.views = 12244235
         dont_look_back_in_anger.channel = oasis_channel
         dont_look_back_in_anger.uploadDate = "6 years"
         
         return [she_will_be_loved, this_love, dont_look_back_in_anger]
     }()
     
+    var vide: Video?
+    
+    func fetchVideos(){
+        
+        let jsonUrl = "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json"
+        URLSession.shared.dataTask(with: URL(string: jsonUrl)!) { (data, response, error) in
+            
+            if let error = error {
+                print(error)
+                return
+            }else {
+                
+                do{
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                    print(json)
+                    
+                    for dictionary in json as! [[String: AnyObject]]{
+                        print(dictionary["title"]!)
+                    }
+                    
+                }catch let jsonError{
+                    print(jsonError)
+                }
+                
+                /*
+                do {
+                    let str = String(data: data!, encoding: .utf8)
+                    print(str)
+                    //let json = try JSONDecoder().decode(vide.self, from: data!)
+                    //self.info = json
+                } catch {
+                    print("didnt work")
+                }*/
+            }
+            
+        }.resume()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fetchVideos()
         
         //navigationItem.title = "Home"
         navigationController?.navigationBar.isTranslucent = false
@@ -122,16 +163,3 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
 
 }
-
-extension UIView {
-    func addConstraintsWithFormat(format: String, views: UIView...){
-        var viewsDictionary = [String: UIView]()
-        for (index, view) in views.enumerated(){
-            let key = "v\(index)"
-            viewsDictionary[key] = view
-            view.translatesAutoresizingMaskIntoConstraints = false
-        }
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
-    }
-}
-
