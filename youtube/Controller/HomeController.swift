@@ -11,44 +11,7 @@ import Foundation
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var videos:[Video] = {
-        
-        // She will be loved
-        var maroon_5_channel = Channel()
-        maroon_5_channel.name = "Maroon 5"
-        maroon_5_channel.profileImageName = "maroon_5"
-        
-        var she_will_be_loved = Video()
-        she_will_be_loved.title = "Maroon 5 - She will be loved"
-        she_will_be_loved.thumbnailImageName = "she_will_be_loved"
-        she_will_be_loved.views = 53452234
-        she_will_be_loved.channel = maroon_5_channel
-        she_will_be_loved.uploadDate = "8 years"
-        
-        // This love
-        var this_love = Video()
-        this_love.title = "Maroon 5 - This love"
-        this_love.thumbnailImageName = "this_love"
-        this_love.views = 35344345
-        this_love.channel = maroon_5_channel
-        this_love.uploadDate = "6 years"
-        
-        // Don't look back in anger
-        var oasis_channel = Channel()
-        oasis_channel.name = "Oasis"
-        oasis_channel.profileImageName = "oasis"
-        
-        var dont_look_back_in_anger = Video()
-        dont_look_back_in_anger.title = "Oasis - Don't look back in anger Asdsb dsabdasd ibdoias"
-        dont_look_back_in_anger.thumbnailImageName = "dont_look_back_in_anger"
-        dont_look_back_in_anger.views = 12244235
-        dont_look_back_in_anger.channel = oasis_channel
-        dont_look_back_in_anger.uploadDate = "6 years"
-        
-        return [she_will_be_loved, this_love, dont_look_back_in_anger]
-    }()
-    
-    var vide: Video?
+    var videos:[Video]?
     
     func fetchVideos(){
         
@@ -64,23 +27,27 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                     let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
                     print(json)
                     
-                    for dictionary in json as! [[String: AnyObject]]{
-                        print(dictionary["title"]!)
+                    self .videos = [Video]()
+                    
+                    for dictionaryVideo in json as! [[String: AnyObject]]{
+                        let video = Video()
+                        video.title = dictionaryVideo["title"] as? String
+                        video.thumbnailImageName = dictionaryVideo["thumbnail_image_name"] as? String
+                        video.thumbnailImageName = dictionaryVideo["thumbnail_image_name"] as? String
+                        video.views = dictionaryVideo["number_of_views"] as? NSNumber
+                        
+                        let dictionaryChannel = dictionaryVideo["channel"] as! [String: AnyObject]
+                        let channel = Channel()
+                        channel.name = dictionaryChannel["name"] as? String
+                        channel.profileImageName = dictionaryChannel["profile_image_name"] as? String
+                        
+                        video.channel = channel
+                        self.videos?.append(video)
                     }
                     
                 }catch let jsonError{
                     print(jsonError)
                 }
-                
-                /*
-                do {
-                    let str = String(data: data!, encoding: .utf8)
-                    print(str)
-                    //let json = try JSONDecoder().decode(vide.self, from: data!)
-                    //self.info = json
-                } catch {
-                    print("didnt work")
-                }*/
             }
             
         }.resume()
@@ -88,9 +55,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("---------------------> 1")
         fetchVideos()
-        
+        print("---------------------> 2")
         //navigationItem.title = "Home"
         navigationController?.navigationBar.isTranslucent = false
         
@@ -101,15 +68,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         navigationItem.titleView = titleLabel
         
         collectionView?.backgroundColor = UIColor.white
-        
         collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: "cellId")
-        
         collectionView?.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
-        
         collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0)
         
         setupMenuBar()
         setupNavBarButtons()
+        print("---------------------> 3")
     }
     
     func setupNavBarButtons() {
@@ -142,13 +107,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return videos.count
+        return videos?.count ?? 0
     }	
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! VideoCell
         
-        cell.video = videos[indexPath.item]
+        cell.video = videos?[indexPath.item]
         
         return cell
     }

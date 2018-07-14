@@ -27,19 +27,28 @@ class VideoCell: BaseCell {
     
     var video:Video? {
         didSet {
-            titleLabel.text = video?.title
-            thumnailImageView.image = UIImage(named: (video?.thumbnailImageName)!)
+            
+            if let title = video?.title {
+                titleLabel.text = title
+            }
+            if let thumbnailImageUrl = video?.thumbnailImageName {
+                thumnailImageView.loadImageFromUrl(stringUrl: thumbnailImageUrl)
+            }
+            
+            if let profileImageUrl = video?.channel?.profileImageName {
+                userProfileImageView.loadImageFromUrl(stringUrl: profileImageUrl)
+            }
             
             if let profileImage = video?.channel?.profileImageName {
                 userProfileImageView.image = UIImage(named: profileImage)
             }
             
-            if let channelName = video?.channel?.name, let numberOfViews = video?.views, let uploadDate = video?.uploadDate {
+            if let channelName = video?.channel?.name, let numberOfViews = video?.views {
                 
                 let numberFormatter = NumberFormatter()
                 numberFormatter.numberStyle = .decimal
                 
-                subtittleTexView.text = "\(channelName) · \(numberFormatter.string(from: numberOfViews)!) · \(uploadDate) "
+                subtittleTexView.text = "\(channelName) • \(numberFormatter.string(from: numberOfViews)!) • 2 years "
             }
             
             //Measure title text
@@ -73,6 +82,7 @@ class VideoCell: BaseCell {
         imageView.backgroundColor = UIColor.green
         imageView.image = UIImage(named: "maroon_5")
         imageView.layer.cornerRadius = 22
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         return imageView
     }()
