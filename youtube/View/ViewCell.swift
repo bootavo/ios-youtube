@@ -31,13 +31,9 @@ class VideoCell: BaseCell {
             if let title = video?.title {
                 titleLabel.text = title
             }
-            if let thumbnailImageUrl = video?.thumbnailImageName {
-                thumnailImageView.loadImageFromUrl(stringUrl: thumbnailImageUrl)
-            }
             
-            if let profileImageUrl = video?.channel?.profileImageName {
-                userProfileImageView.loadImageFromUrl(stringUrl: profileImageUrl)
-            }
+            setupThumbnailImage()
+            setupProfileImage()
             
             if let profileImage = video?.channel?.profileImageName {
                 userProfileImageView.image = UIImage(named: profileImage)
@@ -68,18 +64,28 @@ class VideoCell: BaseCell {
         }
     }
     
-    let thumnailImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.blue
+    func setupThumbnailImage(){
+        if let thumbnailImageUrl = video?.thumbnailImageName {
+            self.thumnailImageView.loadImageFromUrl(urlString: thumbnailImageUrl)
+        }
+    }
+    
+    func setupProfileImage(){
+        if let profileImageUrl = video?.channel?.profileImageName {
+            self.userProfileImageView.loadImageFromUrl(urlString: profileImageUrl)
+        }
+    }
+    
+    let thumnailImageView: CustomImageVIew = {
+        let imageView = CustomImageVIew()
         imageView.image = UIImage(named: "she_will_be_loved")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
     
-    let userProfileImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.green
+    let userProfileImageView: CustomImageVIew = {
+        let imageView = CustomImageVIew()
         imageView.image = UIImage(named: "maroon_5")
         imageView.layer.cornerRadius = 22
         imageView.contentMode = .scaleAspectFill
