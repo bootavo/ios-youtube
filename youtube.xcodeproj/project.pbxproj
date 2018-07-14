@@ -16,6 +16,7 @@
 		8447C881206437E6006F9683 /* ViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447C880206437E6006F9683 /* ViewCell.swift */; };
 		8447C88420643D21006F9683 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447C88320643D21006F9683 /* MenuBar.swift */; };
 		8447C8892064656E006F9683 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447C8882064656E006F9683 /* Video.swift */; };
+		877307B720FAA12300068FA9 /* SettingsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877307B620FAA12300068FA9 /* SettingsLauncher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		8447C880206437E6006F9683 /* ViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCell.swift; sourceTree = "<group>"; };
 		8447C88320643D21006F9683 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		8447C8882064656E006F9683 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		877307B620FAA12300068FA9 /* SettingsLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLauncher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				8447C87D2064307A006F9683 /* Extensions.swift */,
+				877307B620FAA12300068FA9 /* SettingsLauncher.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				8447C881206437E6006F9683 /* ViewCell.swift in Sources */,
 				8447C8892064656E006F9683 /* Video.swift in Sources */,
 				8447C86D2063EED4006F9683 /* HomeController.swift in Sources */,
+				877307B720FAA12300068FA9 /* SettingsLauncher.swift in Sources */,
 				8447C87E2064307B006F9683 /* Extensions.swift in Sources */,
 				8447C86B2063EED4006F9683 /* AppDelegate.swift in Sources */,
 				8447C88420643D21006F9683 /* MenuBar.swift in Sources */,
