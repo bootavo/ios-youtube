@@ -9,13 +9,22 @@
 import UIKit
 
 class Setting: NSObject {
-    var name: String
-    var imageName: String
+    let name: StringName
+    let imageName: String
     
-    init(name: String, imageName: String) {
+    init(name: StringName, imageName: String) {
         self.name = name
         self.imageName = imageName
     }
+}
+
+enum StringName: String{
+    case Cancel = "Cancel"
+    case Settings = "Settings"
+    case TermsPrivacy = "Terms & privacy policy"
+    case SendFeedback = "Send Feedback"
+    case Help = "Help"
+    case SwitchAccount = "Switch Account"
 }
 
 class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -26,12 +35,20 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
     let cellHeight: CGFloat = 50
     
     let settings: [Setting] = {
-        return [Setting(name: "Settings", imageName: "settings"),
-                Setting(name: "Terms & privacy policy", imageName: "settings"),
-                Setting(name: "Send Feedback", imageName: "settings"),
-                Setting(name: "Help", imageName: "settings"),
-                Setting(name: "Switch Account", imageName: "settings"),
-                Setting(name: "Cancel", imageName: "settings")]
+        
+        let settingsSetting = Setting(name: .Settings, imageName: "settings")
+        let termsSetting = Setting(name: .TermsPrivacy, imageName: "settings")
+        let feedbackSetting = Setting(name: .SendFeedback, imageName: "settings")
+        let helpSetting = Setting(name: .Help, imageName: "settings")
+        let switchSetting = Setting(name: .SwitchAccount, imageName: "settings")
+        let cancelSetting = Setting(name: .Cancel, imageName: "settings")
+        
+        return [settingsSetting,
+                termsSetting,
+                feedbackSetting,
+                helpSetting,
+                switchSetting,
+                cancelSetting]
         
     }()
         
@@ -66,8 +83,9 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let setting = settings[indexPath.item]
-        //handleDismiss(setting: setting)
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+        handleDismiss(setting: setting)
+        
+        /*UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.blackView.alpha = 0
             
             if let window = UIApplication.shared.keyWindow{
@@ -80,6 +98,7 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
             //}
             
         }
+        */
     }
     
     let blackView = UIView()
@@ -124,9 +143,9 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
             }
         }) { (completed: Bool) in
             
-            //if setting.name != "" && setting.name != "Cancel" {
-            //    self.homeController?.showControllersForSettings(setting: setting)
-            //}
+            if setting.name != .Cancel {
+                self.homeController?.showControllersForSettings(setting: setting)
+            }
             
         }
     }
