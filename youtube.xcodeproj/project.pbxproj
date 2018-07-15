@@ -19,6 +19,7 @@
 		877307B720FAA12300068FA9 /* SettingsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877307B620FAA12300068FA9 /* SettingsLauncher.swift */; };
 		877307BE20FAC50D00068FA9 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877307BD20FAC50D00068FA9 /* SettingCell.swift */; };
 		87875F1E20FB0F010021932A /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87875F1D20FB0F010021932A /* ApiService.swift */; };
+		87F803ED20FB897B00492E8F /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F803EC20FB897B00492E8F /* FeedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		877307B620FAA12300068FA9 /* SettingsLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLauncher.swift; sourceTree = "<group>"; };
 		877307BD20FAC50D00068FA9 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		87875F1D20FB0F010021932A /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		87F803EC20FB897B00492E8F /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				8447C880206437E6006F9683 /* ViewCell.swift */,
 				8447C88320643D21006F9683 /* MenuBar.swift */,
 				877307BD20FAC50D00068FA9 /* SettingCell.swift */,
+				87F803EC20FB897B00492E8F /* FeedCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8447C881206437E6006F9683 /* ViewCell.swift in Sources */,
+				87F803ED20FB897B00492E8F /* FeedCell.swift in Sources */,
 				8447C8892064656E006F9683 /* Video.swift in Sources */,
 				877307BE20FAC50D00068FA9 /* SettingCell.swift in Sources */,
 				8447C86D2063EED4006F9683 /* HomeController.swift in Sources */,
