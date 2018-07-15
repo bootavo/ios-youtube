@@ -27,7 +27,6 @@ class VideoCell: BaseCell {
     
     var video:Video? {
         didSet {
-            
             if let title = video?.title {
                 titleLabel.text = title
             }

@@ -14,6 +14,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     var homeController: HomeController?
     
     let cellId = "cellId"
+    let titles = ["  Home", "  Trending", "  Subscriptions", "  Account"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,18 +65,24 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     func scrollToMenuIndex(menuIndex: Int){
         let indexPath = IndexPath(item: menuIndex, section: 0)
         collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        
+        setTitleForIndex(index: menuIndex)
     }
     
-    lazy var settingsLancher: SettingsLauncher = {
+    private func setTitleForIndex(index: Int){
+        if let titleLabel = navigationItem.titleView as? UILabel {
+            titleLabel.text = ("  \(titles[index])")
+        }
+    }
+    
+    lazy var settingsLauncher: SettingsLauncher = {
         let launcher = SettingsLauncher()
         launcher.homeController = self
         return launcher
     }()
     
-    let settingsLauncher = SettingsLauncher()
     @objc func handleMore() {
         print("more")
-        settingsLauncher.homeController = self
         settingsLauncher.showSettings()
     }
     
@@ -123,6 +130,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let index = targetContentOffset.move().x / view.frame.width
         let indexPath = IndexPath(item: Int(index), section: 0)
         menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        
+        //Fixed title for each tab
+        setTitleForIndex(index: Int(index))
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

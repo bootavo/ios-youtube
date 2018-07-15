@@ -90,16 +90,7 @@ class MenuBar:UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath.item)
-        
-//        let x = CGFloat(indexPath.item) * frame.width / 4
-//        horizontalBarLeftAnchorConstraint?.constant = x
-//        
-//        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-//            self.layoutIfNeeded()
-//        }, completion: nil)
-        
         homeController?.scrollToMenuIndex(menuIndex: indexPath.item)
-        
     }
     
 }
@@ -137,7 +128,6 @@ class MenuCell: BaseCell {
         addConstraintsWithFormat(format: "H:[v0(28)]", views: imageView)
         addConstraintsWithFormat(format: "V:[v0(28)]", views: imageView)
         
-        
         //Agregando Restricciones a los items del CollecitonView
         
         //Restricciones Horizontales
@@ -145,7 +135,6 @@ class MenuCell: BaseCell {
         
         //Restricciones Verticales
         addConstraint(NSLayoutConstraint(item: imageView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
-        
     }
     
 }

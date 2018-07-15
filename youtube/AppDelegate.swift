@@ -38,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.addConstraintsWithFormat(format: "V:|[v0(20)]", views: statusBarBackgroundView)
         
         return true
-    
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

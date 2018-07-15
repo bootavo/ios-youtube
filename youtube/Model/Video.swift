@@ -9,13 +9,11 @@
 import UIKit
 
 class Video: NSObject {
-    
     var thumbnailImageName: String?
     var title: String?
     var views: NSNumber?
     var uploadDate: String?
     var channel: Channel?
-    
 }
 
 class Channel: NSObject {

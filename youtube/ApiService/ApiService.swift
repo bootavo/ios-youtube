@@ -20,7 +20,6 @@ class ApiService: NSObject {
                 print(error)
                 return
             }else {
-                
                 do{
                     let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
                     print(json)
@@ -52,7 +51,7 @@ class ApiService: NSObject {
                 }
             }
             
-            }.resume()
+        }.resume()
     }
     
 }

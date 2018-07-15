@@ -49,7 +49,6 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
                 helpSetting,
                 switchSetting,
                 cancelSetting]
-        
     }()
         
     override init() {
@@ -70,7 +69,6 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
         cell.setting = setting
         
         return cell
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -86,8 +84,6 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
         handleDismiss(setting: setting)
     }
     
-    let blackView = UIView()
-    
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -95,6 +91,7 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
         return cv
     }()
     
+    let blackView = UIView()
     func showSettings(){
         if let window = UIApplication.shared.keyWindow {
             blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
@@ -119,7 +116,6 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
     }
     
     @objc func handleDismiss(setting: Setting){
-        
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.blackView.alpha = 0
             
