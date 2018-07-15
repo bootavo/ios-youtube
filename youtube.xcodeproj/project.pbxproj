@@ -20,6 +20,8 @@
 		877307BE20FAC50D00068FA9 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877307BD20FAC50D00068FA9 /* SettingCell.swift */; };
 		87875F1E20FB0F010021932A /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87875F1D20FB0F010021932A /* ApiService.swift */; };
 		87F803ED20FB897B00492E8F /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F803EC20FB897B00492E8F /* FeedCell.swift */; };
+		87F803EF20FB9F1900492E8F /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F803EE20FB9F1900492E8F /* TrendingCell.swift */; };
+		87F803F120FBA42800492E8F /* SubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F803F020FBA42800492E8F /* SubscriptionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		877307BD20FAC50D00068FA9 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		87875F1D20FB0F010021932A /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		87F803EC20FB897B00492E8F /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		87F803EE20FB9F1900492E8F /* TrendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
+		87F803F020FBA42800492E8F /* SubscriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 				8447C88320643D21006F9683 /* MenuBar.swift */,
 				877307BD20FAC50D00068FA9 /* SettingCell.swift */,
 				87F803EC20FB897B00492E8F /* FeedCell.swift */,
+				87F803EE20FB9F1900492E8F /* TrendingCell.swift */,
+				87F803F020FBA42800492E8F /* SubscriptionCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -202,6 +208,7 @@
 			files = (
 				8447C881206437E6006F9683 /* ViewCell.swift in Sources */,
 				87F803ED20FB897B00492E8F /* FeedCell.swift in Sources */,
+				87F803EF20FB9F1900492E8F /* TrendingCell.swift in Sources */,
 				8447C8892064656E006F9683 /* Video.swift in Sources */,
 				877307BE20FAC50D00068FA9 /* SettingCell.swift in Sources */,
 				8447C86D2063EED4006F9683 /* HomeController.swift in Sources */,
@@ -209,6 +216,7 @@
 				87875F1E20FB0F010021932A /* ApiService.swift in Sources */,
 				8447C87E2064307B006F9683 /* Extensions.swift in Sources */,
 				8447C86B2063EED4006F9683 /* AppDelegate.swift in Sources */,
+				87F803F120FBA42800492E8F /* SubscriptionCell.swift in Sources */,
 				8447C88420643D21006F9683 /* MenuBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

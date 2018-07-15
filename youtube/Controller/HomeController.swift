@@ -14,7 +14,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     var homeController: HomeController?
     
     let cellId = "cellId"
-    let titles = ["  Home", "  Trending", "  Subscriptions", "  Account"]
+    let trendingCellId = "trendingCellId"
+    let subscriptionCellId = "subscriptionCellId"
+    
+    let titles = ["Home", "Trending", "Subscriptions", "Account"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +44,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func setupCollectionView(){
         collectionView?.backgroundColor = UIColor.white
+        
         collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(TrendingCell.self, forCellWithReuseIdentifier: trendingCellId)
+        collectionView?.register(SubscriptionCell.self, forCellWithReuseIdentifier: subscriptionCellId)
+        
         collectionView?.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0)
         
@@ -141,6 +148,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        
+        if indexPath.item == 1 {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: trendingCellId, for: indexPath)
+        } else if indexPath.item == 2 {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: subscriptionCellId, for: indexPath)
+        }
         
         return cell
     }
