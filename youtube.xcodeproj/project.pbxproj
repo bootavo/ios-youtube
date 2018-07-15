@@ -93,7 +93,6 @@
 				8447C880206437E6006F9683 /* ViewCell.swift */,
 				8447C88320643D21006F9683 /* MenuBar.swift */,
 				877307BD20FAC50D00068FA9 /* SettingCell.swift */,
-				877307B620FAA12300068FA9 /* SettingsLauncher.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -102,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				8447C86C2063EED4006F9683 /* HomeController.swift */,
+				877307B620FAA12300068FA9 /* SettingsLauncher.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
