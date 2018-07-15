@@ -11,6 +11,8 @@ import Foundation
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    var homeController: HomeController?
+    
     var videos:[Video]?
     
     func fetchVideos(){
@@ -95,11 +97,28 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         print("search")
     }
     
+    lazy var settingsLancher: SettingsLauncher = {
+        let launcher = SettingsLauncher()
+        launcher.homeController = self
+        return launcher
+    }()
+    
     let settingsLauncher = SettingsLauncher()
     @objc func handleMore() {
         print("more")
+        settingsLauncher.homeController = self
         settingsLauncher.showSettings()
     }
+    
+    func showControllersForSettings(setting: Setting){
+        let dummySettingsViewController = UIViewController()
+        dummySettingsViewController.view.backgroundColor = UIColor.white
+        dummySettingsViewController.navigationItem.title = setting.name
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        navigationController?.pushViewController(dummySettingsViewController, animated: true)
+    }
+    
     
     let menuBar: MenuBar = {
         let mb = MenuBar()

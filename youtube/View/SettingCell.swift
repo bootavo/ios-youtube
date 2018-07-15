@@ -27,7 +27,6 @@ class SettingCell: BaseCell {
                 iconImageView.image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate)
                 iconImageView.tintColor = UIColor.darkGray
             }
-            
         }
     }
     
